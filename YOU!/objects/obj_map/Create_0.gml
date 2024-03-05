@@ -67,11 +67,17 @@ for (var _xx = 0; _xx < cell_h;_xx++) {
 
 #endregion
 
+
+
 #region draw_walls
 
 var _enemySpawnChance = .1;
 randomize();
 
+var keyX = 0
+var keyY = 1
+var maxDistance = -1
+var distance = -1
 for (var _xx = 0; _xx < cell_h;_xx++) {
     for (var _yy = 0; _yy < cell_v;_yy++) {
         if (grid[# _xx, _yy] == 0) {
@@ -80,16 +86,31 @@ for (var _xx = 0; _xx < cell_h;_xx++) {
             var x1 = (_xx * cell_size) + (cell_size / 2);
             var y1 = (_yy * cell_size) + (cell_size / 2);
             
+			
             if (random(1)  <= _enemySpawnChance) {
                 instance_create_layer(x1, y1, "Instances", obj_enemy);
             }
             
             if (!instance_exists(obj_player)) {
                 instance_create_layer(x1, y1, "Instances", obj_player);
-            }
+            } else {
+				
+				distance = point_distance(x1, y1, obj_player.x, obj_player.y)
+				
+				if (distance > maxDistance) {
+					maxDistance = distance
+					keyX = x1
+					keyY = y1
+				}
+				
+			}
         }
     }
 
+}
+
+if (!instance_exists(obj_key)) {
+	instance_create_layer(keyX, keyY, "Instances", obj_key)
 }
 
 #endregion
