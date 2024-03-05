@@ -43,7 +43,7 @@ for (var i = 0; i < steps; i++) {
     grid[# xx, yy] = 1;
 }
 #endregion
-/*
+
 #region AutoTiling
 
 for (var _xx = 0; _xx < cell_h;_xx++) {
@@ -65,7 +65,7 @@ for (var _xx = 0; _xx < cell_h;_xx++) {
 	}
 }
 
-#endregion*/
+#endregion
 
 #region draw_walls
 
