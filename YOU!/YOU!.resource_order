@@ -32,5 +32,6 @@
     {"name":"spr_player_walk","order":1,"path":"sprites/spr_player_walk/spr_player_walk.yy",},
     {"name":"spr_tile_walls","order":6,"path":"sprites/spr_tile_walls/spr_tile_walls.yy",},
     {"name":"spr_wall","order":7,"path":"sprites/spr_wall/spr_wall.yy",},
+    {"name":"spr_blue_enemy_one_seated","order":1,"path":"sprites/spr_blue_enemy_one_seated/spr_blue_enemy_one_seated.yy",},
   ],
 }
