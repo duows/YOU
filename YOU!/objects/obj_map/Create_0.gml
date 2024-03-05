@@ -5,6 +5,11 @@ room_height = room_width div 2;
 cell_h = room_width div cell_size;
 cell_v = room_height div cell_size;
 
+level = 0
+safeZoneRadius = 250
+maxEnemies = 15 + level * (irandom(2) + 5)
+enemies = 0
+
 grid = ds_grid_create(cell_h, cell_v);
 
 ds_grid_clear(grid, 0);
@@ -71,7 +76,7 @@ for (var _xx = 0; _xx < cell_h;_xx++) {
 
 #region draw_walls
 
-var _enemySpawnChance = .1;
+var _enemySpawnChance = .2;
 randomize();
 
 var keyX = 0
@@ -86,12 +91,7 @@ for (var _xx = 0; _xx < cell_h;_xx++) {
             var x1 = (_xx * cell_size) + (cell_size / 2);
             var y1 = (_yy * cell_size) + (cell_size / 2);
             
-			
-            if (random(1)  <= _enemySpawnChance) {
-                instance_create_layer(x1, y1, "Instances", obj_enemy);
-            }
-            
-            if (!instance_exists(obj_player)) {
+			if (!instance_exists(obj_player)) {
                 instance_create_layer(x1, y1, "Instances", obj_player);
             } else {
 				
@@ -104,6 +104,29 @@ for (var _xx = 0; _xx < cell_h;_xx++) {
 				}
 				
 			}
+			
+			
+			
+            if (random(1)  <= _enemySpawnChance 
+				&& point_distance(obj_player.x, obj_player.y, x1, y1) >= safeZoneRadius
+				&& enemies <= maxEnemies) {
+					
+				var enemyType = irandom(2)
+				var enemy = instance_create_layer(x1, y1, "Instances", obj_enemy);
+				enemies++
+				if (enemyType == 0) {
+					//Red
+					enemy.color = "red"
+				} else if (enemyType == 1) {
+					//Blue
+					enemy.color = "blue"
+				} else {
+					//White
+					enemy.color = "white"
+				}
+				
+				
+            }
         }
     }
 
