@@ -18,16 +18,16 @@
   ],
   "ResourceOrderSettings":[
     {"name":"obj_camera","order":5,"path":"objects/obj_camera/obj_camera.yy",},
+    {"name":"obj_cone","order":7,"path":"objects/obj_cone/obj_cone.yy",},
     {"name":"obj_enemy","order":3,"path":"objects/obj_enemy/obj_enemy.yy",},
     {"name":"obj_flashlight","order":2,"path":"objects/obj_flashlight/obj_flashlight.yy",},
     {"name":"obj_map","order":6,"path":"objects/obj_map/obj_map.yy",},
     {"name":"obj_wall","order":4,"path":"objects/obj_wall/obj_wall.yy",},
-    {"name":"obj_cone","order":7,"path":"objects/obj_cone/obj_cone.yy",},
     {"name":"spr_enemy_idle","order":4,"path":"sprites/spr_enemy_idle/spr_enemy_idle.yy",},
     {"name":"spr_enemy_walk","order":5,"path":"sprites/spr_enemy_walk/spr_enemy_walk.yy",},
     {"name":"spr_flashlight","order":2,"path":"sprites/spr_flashlight/spr_flashlight.yy",},
     {"name":"spr_player_walk","order":1,"path":"sprites/spr_player_walk/spr_player_walk.yy",},
+    {"name":"spr_tile_walls","order":6,"path":"sprites/spr_tile_walls/spr_tile_walls.yy",},
     {"name":"spr_wall","order":3,"path":"sprites/spr_wall/spr_wall.yy",},
-    {"name":"Sprite7","order":16,"path":"sprites/Sprite7/Sprite7.yy",},
   ],
 }

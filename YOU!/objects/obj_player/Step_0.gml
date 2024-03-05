@@ -1,3 +1,5 @@
+depth = -7
+
 #region walk
 
 var up = keyboard_check(ord("W"));
