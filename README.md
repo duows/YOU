@@ -1,1 +1,2 @@
-# YOU! - DuckCode Studios
+# YOU!
+## by DuckCode Studios
