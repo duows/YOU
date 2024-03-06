@@ -10,12 +10,4 @@ switch (color) {
 		break;
 }
 
-switch (state) {
-	case "idle":
-		
-	break;
-	
-	case "chasing":
-		
-	break;
-}
+//state = enemy_states_idle

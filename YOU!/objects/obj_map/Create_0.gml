@@ -6,15 +6,17 @@ cell_h = room_width div cell_size;
 cell_v = room_height div cell_size;
 
 if (!variable_global_exists("level")) {
-	global.level = 0
+	global.level = 200
 }
 	
-	
+controller = 0
 
 randomize()
 safeZoneRadius = 250
-maxEnemies = 15 + global.level * (irandom(2) + 5)
+maxEnemies = 20 + global.level * 2
 enemies = 0
+
+spawn_time = 360
 
 grid = ds_grid_create(cell_h, cell_v);
 
@@ -41,7 +43,7 @@ var dir = irandom(3);
 var xx = cell_h div 2;
 var yy = cell_v div 2;
 
-var steps = 1500;
+var steps = 1500 + global.level * 5;
 
 var prop = 1;
 
@@ -75,18 +77,14 @@ for (var _xx = 0; _xx < cell_h;_xx++) {
 			
 		} else if (grid[# _xx, _yy] == 1) {
 			tilemap_set(tile_layer, 17, _xx, _yy)
-			
 		}
 	}
 }
 
 #endregion
 
-
-
 #region draw_walls
-
-var _enemySpawnChance = .2;
+var _enemySpawnChance = random(0.5) + 0.5
 randomize();
 
 var keyX = 0
@@ -95,6 +93,7 @@ var maxDistance = -1
 var distance = -1
 
 ds_list_clear(global.all_enemies)
+
 for (var _xx = 0; _xx < cell_h;_xx++) {
     for (var _yy = 0; _yy < cell_v;_yy++) {
         if (grid[# _xx, _yy] == 0) {
@@ -114,19 +113,16 @@ for (var _xx = 0; _xx < cell_h;_xx++) {
 					keyX = x1
 					keyY = y1
 				}
-				
 			}
-			
-			
-			
+			randomize()
+
             if (random(1)  <= _enemySpawnChance 
 				&& point_distance(obj_player.x, obj_player.y, x1, y1) >= safeZoneRadius
-				&& enemies <= maxEnemies) {
+				&& enemies <= maxEnemies && controller mod (irandom(10) + 1) == 0) {
 					
 				var enemyType = irandom(2)
 				var enemy = instance_create_layer(x1, y1, "Instances", obj_enemy);
 				enemies++
-				
 				
 				ds_list_add(global.all_enemies, enemy)
 				if (enemyType == 0) {
@@ -139,12 +135,11 @@ for (var _xx = 0; _xx < cell_h;_xx++) {
 					//White
 					enemy.color = "white"
 				}
-				
-				
             }
+			_enemySpawnChance = random(0.5) + 0.5
+			controller++
         }
     }
-
 }
 
 if (!instance_exists(obj_key)) {

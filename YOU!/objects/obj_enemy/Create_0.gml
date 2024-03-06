@@ -1,4 +1,4 @@
-state = "awake";
+//state()
 
 path = path_add();
 vel = 2.0;
