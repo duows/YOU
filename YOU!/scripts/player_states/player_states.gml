@@ -25,7 +25,6 @@ function player_states_free(){
 		velh = 0;
 		velv = 0;
 		
-		
 		alarm[0] = dash_cooldown
 		
 		can_dash = false
