@@ -65,6 +65,7 @@ function player_states_dash() {
 		while (!place_meeting(x+sign(velh), y, obj_wall)) {
 			x+=sign(velh);
 		}
+		dash_time = dash_distance
 		velh = 0;
 	}
 
@@ -74,6 +75,7 @@ function player_states_dash() {
 		while (!place_meeting(x, y+sign(velv), obj_wall)) {
 			y+=sign(velv);
 		}
+		dash_time = dash_distance
 		velv = 0;
 	}
 
