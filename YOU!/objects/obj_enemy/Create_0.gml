@@ -4,7 +4,7 @@ path = path_add();
 vel = 2.0;
 
 color = "red"
-
+visible = false
 switch (color) {
 	case "red":
 		sprite_index = spr_red_enemy_one

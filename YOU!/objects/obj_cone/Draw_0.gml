@@ -1,9 +1,14 @@
 /// @description Draw Light
 
+
 if(!surface_exists(light_surf))
 {
   light_surf=surface_create(room_width,room_height);
 }
+
+var _list = ds_list_create()
+var _num = 0
+
 //Create surface
 surface_set_target(light_surf)
 {
@@ -13,17 +18,29 @@ surface_set_target(light_surf)
   var _start_angle=image_angle_-angle/2;
   var _angle_change=angle/fan_divisions;
   for(var _i=0; _i<=fan_divisions;_i++)
-  {
-    draw_vertex_colour(x+lengthdir_x(maxLength, _start_angle + _angle_change * _i),
-                       y+lengthdir_y(maxLength, _start_angle + _angle_change * _i),
+  {  
+	var pointX = x+lengthdir_x(maxLength, _start_angle + _angle_change * _i)
+	var pointY = y+lengthdir_y(maxLength, _start_angle + _angle_change * _i)
+	draw_vertex_colour(pointX,
+					   pointY,
                        colors[index],.1);
+					   
+	_wall = collision_line(x, y, pointX, pointY, obj_wall, false, true)
+	if (_wall != noone) {
+		continue
+	} else {
+		collision_line_list(x, y, pointX, pointY, obj_enemy, false, true, _list, false);
+	}
   }
+  
   draw_primitive_end();
   
   var _a_big_number = $7FFFFFFF;
   var _light_x = x;
   var _light_y = y;
   
+  
+ 
   //Cut walls out of lights.
   with(obj_wall)
   {
@@ -43,7 +60,9 @@ surface_set_target(light_surf)
     draw_vertex_colour(bbox_right+_mar,bbox_top,c_black,1);
     draw_vertex_colour(bbox_right+_mar,bbox_bottom+_mar,c_black,1);
     draw_vertex_colour(_r,_b,c_black,1);
-    
+	
+	
+	
     //2 - tr-c br-r tr-r 
     draw_vertex_colour(bbox_right+_mar,bbox_top,c_black,1);
     draw_vertex_colour(_r,_t,c_black,1);
@@ -73,17 +92,40 @@ surface_set_target(light_surf)
     draw_vertex_colour(bbox_right+_mar,bbox_bottom+_mar,c_black,1);
     draw_vertex_colour(bbox_left,bbox_bottom+_mar,c_black,1);
     draw_vertex_colour(_l,_b,c_black,1);
-    
+
     //8 br-c br-r bl-r
     draw_vertex_colour(bbox_right+_mar,bbox_bottom+_mar,c_black,1);
     draw_vertex_colour(_r,_b,c_black,1);
     draw_vertex_colour(_l,_b,c_black,1);
-    
+
+	
     draw_primitive_end();
   }
-  
+
+
+
 }
 surface_reset_target();
+
+
+for (var i = 0; i < ds_list_size(_list); i++) {
+	
+	var instance = _list[| i]
+	
+	if (instance.color == "red" && index == 1) {
+		instance.visible = true
+	} else if (instance.color == "blue" && index == 2) {
+		instance.visible = true		
+	} else if (instance.color == "white" && index == 0) {
+		instance.visible = true
+	} else {
+		instance.visible = false
+	}
+	
+}
+
+
+ds_list_destroy(_list)
 
 gpu_set_blendmode_ext(2,2)
 draw_surface_ext(light_surf,0,0,1,1,0,colors[index],.1);

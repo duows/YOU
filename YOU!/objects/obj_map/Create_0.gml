@@ -5,14 +5,24 @@ room_height = room_width div 2;
 cell_h = room_width div cell_size;
 cell_v = room_height div cell_size;
 
-level = 0
+if (!variable_global_exists("level")) {
+	global.level = 0
+}
+	
+	
+
+randomize()
 safeZoneRadius = 250
-maxEnemies = 15 + level * (irandom(2) + 5)
+maxEnemies = 15 + global.level * (irandom(2) + 5)
 enemies = 0
 
 grid = ds_grid_create(cell_h, cell_v);
 
 ds_grid_clear(grid, 0);
+
+if (!variable_global_exists("all_enemies")) {
+	global.all_enemies = ds_list_create()
+}
 
 north = 1;
 west = 2;
@@ -83,6 +93,8 @@ var keyX = 0
 var keyY = 1
 var maxDistance = -1
 var distance = -1
+
+ds_list_clear(global.all_enemies)
 for (var _xx = 0; _xx < cell_h;_xx++) {
     for (var _yy = 0; _yy < cell_v;_yy++) {
         if (grid[# _xx, _yy] == 0) {
@@ -114,6 +126,9 @@ for (var _xx = 0; _xx < cell_h;_xx++) {
 				var enemyType = irandom(2)
 				var enemy = instance_create_layer(x1, y1, "Instances", obj_enemy);
 				enemies++
+				
+				
+				ds_list_add(global.all_enemies, enemy)
 				if (enemyType == 0) {
 					//Red
 					enemy.color = "red"
