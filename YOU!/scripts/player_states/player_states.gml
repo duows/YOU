@@ -25,11 +25,14 @@ function player_states_free(){
 		velh = 0;
 		velv = 0;
 		
+		
 		alarm[0] = dash_cooldown
 		
 		can_dash = false
 		
 		dash_direction = point_direction(x, y, mouse_x, mouse_y)
+	
+		sprite_index = spr_player_dash
 		
 		state = player_states_dash;
 	}

@@ -1,12 +1,12 @@
 {
   "$GMScript":"",
-  "%Name":"player_states",
+  "%Name":"enemy_states",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"player_states",
+  "name":"enemy_states",
   "parent":{
-    "name":"player",
-    "path":"folders/Scripts/player.yy",
+    "name":"enemies",
+    "path":"folders/Scripts/enemies.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
