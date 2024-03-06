@@ -26,7 +26,7 @@
   "origin":4,
   "parent":{
     "name":"red",
-    "path":"folders/Sprites/red.yy",
+    "path":"folders/Sprites/enemies/red.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
