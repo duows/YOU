@@ -26,7 +26,7 @@
   "origin":4,
   "parent":{
     "name":"white",
-    "path":"folders/Sprites/white.yy",
+    "path":"folders/Sprites/enemies/white.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
